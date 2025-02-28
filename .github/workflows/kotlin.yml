@@ -1,0 +1,19 @@
+name: Run Kotlin Code
+
+on: [push]
+
+jobs:
+  run-kotlin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Kotlin
+        run: sudo apt install kotlin
+
+      - name: Compile Kotlin
+        run: kotlinc BankingSystem.kt -include-runtime -d BankingSystem.jar
+
+      - name: Run Kotlin Program
+        run: java -jar BankingSystem.jar
